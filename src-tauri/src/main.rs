@@ -38,10 +38,15 @@ fn main() -> Result<(), anyhow::Error> {
                             native_handler.dispatch();
 
                             match event.target {
+                                LeftButton => emit(&handle, "LeftClick"),
+                                RightButton => emit(&handle, "RightClick"),
                                 RightArrow => emit(&handle, "RightArrow"),
                                 UpArrow => emit(&handle, "UpArrow"),
                                 LeftArrow => emit(&handle, "LeftArrow"),
                                 DownArrow => emit(&handle, "DownArrow"),
+                                Space => emit(&handle, "Spacebar"),
+                                Backspace => emit(&handle, "Backspace"),
+                                Tab => emit(&handle, "Tab"),
                                 Key1 => emit(&handle, "1"),
                                 Key2 => emit(&handle, "2"),
                                 Key3 => emit(&handle, "3"),
@@ -51,6 +56,8 @@ fn main() -> Result<(), anyhow::Error> {
                                 Key7 => emit(&handle, "7"),
                                 Key8 => emit(&handle, "8"),
                                 Key9 => emit(&handle, "9"),
+                                Key0 => emit(&handle, "0"),
+
                                 _ => {}
                             };
                         }
