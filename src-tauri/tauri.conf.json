@@ -61,10 +61,10 @@
     "windows": [
       {
         "fullscreen": false,
-        "height": 100,
+        "height": 80,
         "resizable": false,
         "title": "Keyper",
-        "width":300,
+        "width":500,
         "alwaysOnTop": true,
         "label": "main"
        }

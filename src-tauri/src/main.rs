@@ -4,7 +4,7 @@
 )]
 
 mod events;
-use hookmap_core::button::Button;
+use hookmap_core::button::Button::*;
 use hookmap_core::event::Event;
 use tauri::{AppHandle, Manager};
 // the payload type must implement `Serialize` and `Clone`.
@@ -38,10 +38,19 @@ fn main() -> Result<(), anyhow::Error> {
                             native_handler.dispatch();
 
                             match event.target {
-                                Button::RightArrow => emit(&handle, "RightArrow"),
-                                Button::UpArrow => emit(&handle, "UpArrow"),
-                                Button::LeftArrow => emit(&handle, "LeftArrow"),
-                                Button::DownArrow => emit(&handle, "DownArrow"),
+                                RightArrow => emit(&handle, "RightArrow"),
+                                UpArrow => emit(&handle, "UpArrow"),
+                                LeftArrow => emit(&handle, "LeftArrow"),
+                                DownArrow => emit(&handle, "DownArrow"),
+                                Key1 => emit(&handle, "1"),
+                                Key2 => emit(&handle, "2"),
+                                Key3 => emit(&handle, "3"),
+                                Key4 => emit(&handle, "4"),
+                                Key5 => emit(&handle, "5"),
+                                Key6 => emit(&handle, "6"),
+                                Key7 => emit(&handle, "7"),
+                                Key8 => emit(&handle, "8"),
+                                Key9 => emit(&handle, "9"),
                                 _ => {}
                             };
                         }

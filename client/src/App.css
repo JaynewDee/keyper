@@ -1,20 +1,35 @@
+body {
+  overflow: hidden;
+  margin: 0;
+}
 #root {
   max-width: 1280px;
-  margin: 0 auto;
+  margin: auto;
   text-align: center;
   overflow: hidden;
-  height: 66vh;
+  font-family: monospace;
+  height: 100vh;
 }
-
-
-
 .keyscroll-container {
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  font-size: 3rem;
-  letter-spacing: 1px;
-  width: auto;
-  height: 100%;
-  margin: auto 1rem auto 0; 
+   letter-spacing: 5px;
+  box-shadow: inset 0px 0px 3px black;
+  margin: auto;
+ padding-top: .8rem;
+ padding-right: 2rem;
+ height: 100%;
  }
+ 
+ .keyscroll-container > p {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all .33s;
+ margin-top: auto;
+}
+
+.keyscroll-container > * {
+  font-size: 2.5rem;
+}
