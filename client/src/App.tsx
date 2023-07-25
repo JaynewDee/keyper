@@ -8,6 +8,7 @@ import { listen } from '@tauri-apps/api/event'
 // await invoke("initialize");
 import { BsArrowRightShort as RightArrow, BsArrowLeftShort as LeftArrow, BsArrowUpShort as UpArrow, BsArrowDownShort as DownArrow } from 'react-icons/bs';
 import { MdOutlineSpaceBar as Spacebar, MdBackspace as Backspace, MdKeyboardTab as Tab, MdKeyboardReturn as Return } from "react-icons/md"
+import { PiCursorClickBold as Click } from "react-icons/pi"
 import { IconType } from 'react-icons';
 
 function App() {
@@ -34,15 +35,18 @@ function App() {
   )
 }
 
-const withProps = (Icon: IconType, size: string) => <Icon size={size} />;
+const withProps = (Icon: IconType, size: string) => <Icon size={size} className='key-icon' />;
 const keyTranslationTable: { [key: string]: any } = {
   "LeftArrow": withProps(LeftArrow, "3rem"),
   "RightArrow": withProps(RightArrow, "3rem"),
   "UpArrow": withProps(UpArrow, "3rem"),
   "DownArrow": withProps(DownArrow, "3rem"),
   "Spacebar": withProps(Spacebar, "3rem"),
-  "Backspace": withProps(Backspace, "3rem"),
-  "Tab": withProps(Tab, "3rem")
+  "Backspace": withProps(Backspace, "2rem"),
+  "Tab": withProps(Tab, "3rem"),
+  "Enter": withProps(Return, "2.33rem"),
+  "LeftClick": withProps(Click, "2rem"),
+  "RightClick": withProps(Click, "2rem")
 }
 
 const displaySwitch = (key: string) => keyTranslationTable[key] || key;
