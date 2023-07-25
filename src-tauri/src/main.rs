@@ -6,7 +6,8 @@
 mod events;
 use hookmap_core::event::Event;
 use hookmap_core::{button::Button::*, event::ButtonEvent};
-use tauri::{AppHandle, Manager};
+use tauri::{App, AppHandle, Manager};
+
 // the payload type must implement `Serialize` and `Clone`.
 #[derive(Clone, serde::Serialize)]
 struct Payload {
@@ -14,23 +15,27 @@ struct Payload {
 }
 
 fn main() -> Result<(), anyhow::Error> {
-    tauri::Builder::default()
-        .setup(|app| {
-            let handle = app.handle();
+    let app_events_setup = |app: &mut App| {
+        let handle = app.handle();
 
-            std::thread::spawn(move || {
-                let rx = hookmap_core::install_hook();
+        std::thread::spawn(move || {
+            let rx = hookmap_core::install_hook();
 
-                while let Ok((event, native_handler)) = rx.recv() {
-                    match event {
-                        Event::Button(event) => {
-                            native_handler.dispatch();
-                            match_event(event, &handle)
-                        }
-                        _ => continue,
+            while let Ok((event, native_handler)) = rx.recv() {
+                match event {
+                    Event::Button(event) => {
+                        native_handler.dispatch();
+                        match_event(event, &handle)
                     }
+                    _ => continue,
                 }
-            });
+            }
+        });
+    };
+
+    tauri::Builder::default()
+        .setup(move |app| {
+            app_events_setup(app);
             Ok(())
         })
         .run(tauri::generate_context!())
